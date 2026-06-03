@@ -1,0 +1,53 @@
+# =====================
+# Python Backend
+# =====================
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.env
+
+# =====================
+# Next.js Frontend
+# =====================
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+frontend/.env
+
+# =====================
+# IDE
+# =====================
+.vscode/
+.idea/
+
+# =====================
+# OS Files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Logs
+# =====================
+*.log
+
+# =====================
+# Environment Files
+# =====================
+.env
+.env.local
+.env.production
+.env.development
+
+# =====================
+# Python cache
+# =====================
+*.pyo
+*.pyd
+.pytest_cache/
+
+# =====================
+# Build files
+# =====================
+dist/
+build/

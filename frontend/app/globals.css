@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: #0a0a0f;
+  color: #e2e2f0;
+  font-family: 'Syne', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a3e;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46a0;
+}
+
+/* Markdown styles */
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: #e2e2f0;
+}
+.markdown-body h1 { font-size: 1.4rem; }
+.markdown-body h2 { font-size: 1.2rem; }
+.markdown-body h3 { font-size: 1rem; }
+
+.markdown-body p {
+  margin: 0.5rem 0;
+  line-height: 1.7;
+}
+
+.markdown-body ul, .markdown-body ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+.markdown-body li {
+  margin: 0.25rem 0;
+  line-height: 1.6;
+}
+
+.markdown-body code:not(pre code) {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: #1a1a2e;
+  color: #a78bfa;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  border: 1px solid #2a2a3e;
+}
+
+.markdown-body pre {
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1e1e2e;
+}
+
+.markdown-body blockquote {
+  border-left: 3px solid #7c6af7;
+  margin: 0.75rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  color: #8888aa;
+  background: #111118;
+  border-radius: 0 4px 4px 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+}
+.markdown-body th {
+  background: #1a1a2e;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: 1px solid #2a2a3e;
+  color: #a78bfa;
+  font-weight: 600;
+}
+.markdown-body td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #1e1e2e;
+}
+.markdown-body tr:nth-child(even) td {
+  background: #0f0f1a;
+}
+
+.markdown-body a {
+  color: #7c6af7;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-body strong { color: #c4c4e0; font-weight: 600; }
+.markdown-body em { color: #b0b0d0; font-style: italic; }
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid #1e1e2e;
+  margin: 1rem 0;
+}
+
+/* Typing cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #7c6af7;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
