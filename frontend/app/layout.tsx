@@ -1,17 +1,30 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
+import { AuthProvider } from "@/context/AuthContext";
 
-
-// SEO 
 export const metadata: Metadata = {
   title: 'AI Chat',
   description: 'Streaming AI chatbot powered by Puter',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+
+        <Script
+          src="https://accounts.google.com/gsi/client"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   )
 }

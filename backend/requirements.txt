@@ -24,3 +24,9 @@ python-multipart
 
 # Keyword search
 rank-bm25==0.2.2
+
+python-jose[cryptography]   # JWT encoding/decoding
+passlib[bcrypt]             # Password hashing
+python-multipart            # FastAPI form data support
+google-auth                 # Verifying Google tokens
+sqlalchemy 

@@ -20,7 +20,7 @@ We use bi-encoder for speed (20 chunks from millions) and cross-encoder for accu
 from typing import List, Tuple
 from sentence_transformers import CrossEncoder
 import logging
-from backend.app.config import config
+from app.config import config
 
 log = logging.getLogger(__name__)
 

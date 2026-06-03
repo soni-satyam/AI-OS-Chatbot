@@ -3,6 +3,13 @@ RAG Configuration — all tunable parameters in one place.
 Change these without touching any other file.
 """
 from dataclasses import dataclass, field
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  
+
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 
 
 @dataclass

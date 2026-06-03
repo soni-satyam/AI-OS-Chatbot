@@ -20,7 +20,7 @@ from typing import List, Dict, Tuple
 from rank_bm25 import BM25Okapi
 import numpy as np
 import logging
-from backend.app.config import config
+from app.config import config
 
 log = logging.getLogger(__name__)
 

@@ -6,7 +6,7 @@ Upload:  PDF → parse (pdfplumber) → smart chunk → embed (BGE) → store (Q
 Query:   question → expand → hybrid search (vector + BM25) → rerank → confidence → LLM
 Answer:  grounded response + citations + follow-up questions + confidence score
 """
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -20,14 +20,24 @@ from qdrant_client.models import (
     Filter, FieldCondition, MatchValue
 )
 from sentence_transformers import SentenceTransformer
+
+from auth.database import Base, engine
+from auth.router import router as auth_router
+from auth.dependencies import get_current_user
+from auth.models import User
+
+# Create tables on startup (in production use Alembic migrations instead)
+Base.metadata.create_all(bind=engine)
+
+
 import logging
 
-from backend.app.config import config
-from backend.app.parser import parse_pdf
-from backend.app.chunker import smart_chunk, Chunk
-from backend.app.retrieval import BM25Index, hybrid_search
-from backend.app.reranker import RerankerService, compute_confidence
-from backend.app.query_utils import expand_query, generate_followup_questions
+from app.config import config
+from app.parser import parse_pdf
+from app.chunker import smart_chunk, Chunk
+from app.retrieval import BM25Index, hybrid_search
+from app.reranker import RerankerService, compute_confidence
+from app.query_utils import expand_query, generate_followup_questions
 
 logging.basicConfig(
     level=logging.INFO,
@@ -40,6 +50,9 @@ load_dotenv()
 
 # ── App ───────────────────────────────────────────────────────
 app = FastAPI(title="Production RAG Chatbot")
+
+# Register the auth router — all routes will be at /auth/signup, /auth/login, etc.
+app.include_router(auth_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -517,3 +530,10 @@ async def debug_retrieve(query: str, top_k: int = 5):
             for i, c in enumerate(reranked)
         ]
     }
+
+
+@app.post("/chat")
+async def chat(request: ChatRequest, current_user: User = Depends(get_current_user)):
+    # current_user is automatically populated from the JWT
+    # If no valid token → FastAPI returns 401 automatically
+    ...

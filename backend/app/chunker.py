@@ -16,8 +16,8 @@ WHY this chunker is better:
 from dataclasses import dataclass, field
 from typing import List
 import logging
-from backend.app.parser import ParsedDocument, ParsedBlock
-from backend.app.config import config
+from app.parser import ParsedDocument, ParsedBlock
+from app.config import config
 
 log = logging.getLogger(__name__)
 

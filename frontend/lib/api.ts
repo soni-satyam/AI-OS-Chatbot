@@ -89,3 +89,10 @@ export async function* streamChat(
     reader.releaseLock()
   }
 }
+
+export function authHeaders(token: string | null): HeadersInit {
+  return {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+}
